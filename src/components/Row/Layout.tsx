@@ -4,9 +4,18 @@ type LayoutProps = {
   title: string;
   movies: Movie[];
   isLargeRow?: boolean;
+  trailerUrl: string | null;
+  handleClick: (movie: Movie) => void;
+};
 };
 
-export const Layout = ({ title, movies, isLargeRow }: LayoutProps) => {
+export const Layout = ({
+  title,
+  movies,
+  isLargeRow,
+  handleClick,
+  trailerUrl,
+}: LayoutProps) => {
   const image_url = "https://image.tmdb.org/t/p/original";
   return (
     <div className="ml-5 text-white">
@@ -21,6 +30,7 @@ export const Layout = ({ title, movies, isLargeRow }: LayoutProps) => {
             src={`${image_url}${
               isLargeRow ? movie.poster_path : movie.backdrop_path
             }`}
+            onClick={() => handleClick(movie)}
             alt={movie.name}
           />
         ))}
