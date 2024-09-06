@@ -1,4 +1,5 @@
 import { Movie } from "./useProps.ts";
+import YouTube from "react-youtube";
 
 type LayoutProps = {
   title: string;
@@ -7,6 +8,13 @@ type LayoutProps = {
   trailerUrl: string | null;
   handleClick: (movie: Movie) => void;
 };
+
+type Options = {
+  height: string;
+  width: string;
+  playerVars: {
+    autoplay: 0 | 1 | undefined;
+  };
 };
 
 export const Layout = ({
@@ -17,6 +25,14 @@ export const Layout = ({
   trailerUrl,
 }: LayoutProps) => {
   const image_url = "https://image.tmdb.org/t/p/original";
+  const opts: Options = {
+    height: "390",
+    width: "640",
+    playerVars: {
+      autoplay: 1,
+    },
+  };
+
   return (
     <div className="ml-5 text-white">
       <h2>{title}</h2>
@@ -35,6 +51,7 @@ export const Layout = ({
           />
         ))}
       </div>
+      {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
     </div>
   );
 };
