@@ -8,14 +8,7 @@ type Props = {
 };
 
 export const Row = ({ title, fetchUrl, isLargeRow }: Props) => {
-  const movies = useProps(fetchUrl); // usePropsフックを使用してmoviesを取得
-
   return (
-    <Layout
-      movies={movies}
-      title={title}
-      isLargeRow={isLargeRow}
-      {...useProps(fetchUrl)}
-    />
+    <Layout title={title} isLargeRow={isLargeRow} {...useProps(fetchUrl)} />
   );
 };
